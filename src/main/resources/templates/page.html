@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>分页</title>
+    <script th:src="@{js/jquery-3.4.1.js}"></script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>role</th>
+    </tr>
+    <tr th:each="l:${userPageInfo.list}">
+        <td th:text="${l.uid}"></td>
+        <td th:text="${l.uname}"></td>
+        <td th:text="${l.password}"></td>
+        <td th:text="${l.role}"></td>
+    </tr>
+</table>
+
+<a th:href="@{page(startPage=${userPageInfo.firstPage})}" th:text="首页"></a>
+<a th:href="@{page(startPage=${userPageInfo.prePage})}"
+   th:if="${userPageInfo.isHasPreviousPage()}" th:text="上一页">
+</a>
+<span th:if="${! userPageInfo.isHasPreviousPage()}" th:text="上一页"></span>
+
+<span th:each="page_Num : ${userPageInfo.navigatepageNums}">
+        <a th:href="@{#}"
+           th:text="${page_Num}"
+           th:if="${page_Num == userPageInfo.pageNum }"></a>
+        <a th:href="@{page(startPage=${page_Num})}"
+           th:text="${page_Num}"
+           th:if="${page_Num != userPageInfo.pageNum }"></a>
+         </span>
+
+<a th:href="@{page(startPage=${userPageInfo.nextPage})}"
+   th:if="${userPageInfo.isHasNextPage()}">下一页</a>
+<span th:if="${! userPageInfo.isHasNextPage()}" th:text="下一页"></span>
+<a th:href="@{page(startPage=${userPageInfo.lastPage})}" th:text="尾页"></a>
+
+
+</body>
+</html>
