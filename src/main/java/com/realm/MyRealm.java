@@ -42,6 +42,6 @@ public class MyRealm extends AuthorizingRealm {
         String uname = (String) authenticationToken.getPrincipal();
         String password = userSercive.getUserByUname(uname);
 
-        return new SimpleAuthenticationInfo(uname,password,"myRealm");
+        return new SimpleAuthenticationInfo(uname, password, "myRealm");
     }
 }

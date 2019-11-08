@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.UserMapper">
-<insert id="addUser" parameterType="java.lang.String" >
+    <insert id="addUser" parameterType="java.lang.String">
     insert into user(uname,password) values(#{arg0},#{arg1})
 </insert>
-    <select id="selectUser" resultType="user" >
+    <select id="selectUser" resultType="user">
         select * from user
     </select>
     <select id="getUserByUname" resultType="java.lang.String">

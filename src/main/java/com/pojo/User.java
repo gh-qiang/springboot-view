@@ -4,7 +4,7 @@ public class User {
     private int uid;
     private String uname;
     private String password;
-private String role;
+    private String role;
 
     @Override
     public String

@@ -22,14 +22,18 @@ public class UserSerciveImp implements UserSercive {
 
     @Override
     public void addUser(String uname, String password) {
-        userMapper.addUser(uname,password);
+        userMapper.addUser(uname, password);
     }
-    public List<User> selectUser(){
+
+    public List<User> selectUser() {
         return userMapper.selectUser();
     }
-    public String getUserByUname(String uname){
+
+    public String getUserByUname(String uname) {
         return userMapper.getUserByUname(uname);
-    } public String getRoleByUname(String uname){
+    }
+
+    public String getRoleByUname(String uname) {
         return userMapper.getRoleByUname(uname);
     }
 

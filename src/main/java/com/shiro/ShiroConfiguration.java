@@ -13,7 +13,7 @@ import java.util.Map;
 @Configuration
 public class ShiroConfiguration {
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean getShiroFilter(SecurityManager securityManager){
+    public ShiroFilterFactoryBean getShiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl("/login");
@@ -21,31 +21,24 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setUnauthorizedUrl("/page");
         //过滤器
         Map<String, String> map = new HashMap<>();
-        map.put("/login","anon");
-        map.put("/handle","anon");
-        map.put("/**","authc");
-        map.put("/addUser","roles[role1]");
+        map.put("/login", "anon");
+        map.put("/handle", "anon");
+        map.put("/**", "authc");
+        map.put("/addUser", "roles[role1]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
-@Bean(name = "securityManager")
-    public SecurityManager getSecurityManager(MyRealm myRealm){
-    SecurityManager securityManager = new DefaultWebSecurityManager(myRealm);
-    return securityManager;
-}
-@Bean(name = "myRealm")
-    public MyRealm getMyRealm(){
+
+    @Bean(name = "securityManager")
+    public SecurityManager getSecurityManager(MyRealm myRealm) {
+        SecurityManager securityManager = new DefaultWebSecurityManager(myRealm);
+        return securityManager;
+    }
+
+    @Bean(name = "myRealm")
+    public MyRealm getMyRealm() {
         return new MyRealm();
-}
-
-
-
-
-
-
-
-
-
+    }
 
 
 }

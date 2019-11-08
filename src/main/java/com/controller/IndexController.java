@@ -43,12 +43,13 @@ public class IndexController {
     }
 
     @RequestMapping("login")
-    public String index(HttpServletRequest request){
-        request.setAttribute("name","pp");
+    public String index(HttpServletRequest request) {
+        request.setAttribute("name", "pp");
         return "login";
     }
+
     @RequestMapping("handle")
-    public String login(String uname,String password){
+    public String login(String uname, String password) {
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(uname, password);
@@ -64,38 +65,34 @@ public class IndexController {
 
         return "login";
     }
+
     @RequestMapping("addUser")
-    public String add(){
+    public String add() {
         return "add";
     }
 
     @RequestMapping("sub")
-    public String sub(String uname,String password){
+    public String sub(String uname, String password) {
         userSercive.addUser(uname, password);
         return "index";
     }
+
     @RequestMapping("index")
-    public String index(){
+    public String index() {
         return "index";
     }
+
     @RequestMapping("page")
-    public String page(@RequestParam(defaultValue = "1")Integer startPage, Model model){
+    public String page(@RequestParam(defaultValue = "1") Integer startPage, Model model) {
         //startPage适用当前线程或重新开启线程，用于处理接下来查询的数据集合们，跟据设定的野马的每页显示的的数量
         //直接将查询的集合设定为page类型
-        PageHelper.startPage(startPage,6);
+        PageHelper.startPage(startPage, 6);
         List<User> userList = userSercive.selectUser();
         PageInfo<User> userPageInfo = new PageInfo<>(userList);
-        model.addAttribute("userPageInfo",userPageInfo);
+        model.addAttribute("userPageInfo", userPageInfo);
 
         return "page";
     }
-
-
-
-
-
-
-
 
 
 }
